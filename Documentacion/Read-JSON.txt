@@ -1,0 +1,30 @@
+# Documentación: JSON en el Proyecto Alumbra AI
+
+JSON (JavaScript Object Notation) es un formato ligero de intercambio de datos que es fácil de leer y escribir para los humanos, y fácil de analizar y generar para las máquinas. En el proyecto Alumbra AI, JSON se utiliza principalmente para archivos de configuración y, en un caso, para metadatos simples.
+
+## ¿Por qué JSON?
+
+1.  **Legibilidad:** Su sintaxis es similar a la de los objetos de JavaScript, lo que lo hace intuitivo para los desarrolladores.
+2.  **Ampliamente Soportado:** Prácticamente todos los lenguajes de programación modernos tienen bibliotecas para analizar y generar JSON.
+3.  **Ligero:** Tiene una sobrecarga de sintaxis mínima, lo que lo hace eficiente para la transmisión de datos y el almacenamiento de configuraciones.
+4.  **Configuración:** Es un formato estándar para muchos tipos de archivos de configuración en el desarrollo de software.
+
+## Archivos del Proyecto que Utilizan JSON (.json)
+
+A continuación, se listan los archivos JSON clave en el proyecto y su propósito:
+
+### Configuración del Frontend (Next.js y Herramientas Relacionadas)
+*   `package.json`: Este es el manifiesto del proyecto Node.js para el frontend. Define metadatos del proyecto (nombre, versión), scripts (para desarrollo, construcción, etc.), y enumera las dependencias del proyecto (bibliotecas de terceros).
+*   `components.json`: Archivo de configuración específico para la biblioteca de componentes ShadCN UI. Define el estilo, la estructura de directorios para los componentes, y otros alias utilizados por la CLI de ShadCN.
+*   `tsconfig.json`: Aunque su propósito principal es configurar el compilador de TypeScript, el archivo en sí está en formato JSON. Define las opciones del compilador, los archivos a incluir/excluir, y las rutas de los módulos.
+
+### Configuración del Backend (Node.js/Express)
+*   `alumbra-backend/package.json`: Similar al `package.json` del frontend, este es el manifiesto del proyecto Node.js para el backend. Define sus propios scripts, dependencias y metadatos.
+
+### Datos de la Aplicación
+*   `Comentarios/metadata.json`: Este archivo almacena metadatos relacionados con la funcionalidad de guardar comentarios localmente. Específicamente, guarda el ID del último comentario global (`lastGlobalCommentId`) para mantener un consecutivo entre diferentes archivos de comentarios.
+
+### Configuración del Editor (VS Code)
+*   `.vscode/settings.json`: Este archivo contiene configuraciones específicas para el editor Visual Studio Code cuando se trabaja en este proyecto. Puede incluir ajustes para el formateo, linters, o extensiones específicas del editor, como habilitar la finalización en línea de IA de IDX.
+
+El uso de JSON en estos archivos permite una gestión clara y estandarizada de la configuración del proyecto, las dependencias y los pequeños conjuntos de datos necesarios para la aplicación.

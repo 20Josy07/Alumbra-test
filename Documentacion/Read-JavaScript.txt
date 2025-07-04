@@ -1,0 +1,64 @@
+# Documentación: JavaScript en el Proyecto Alumbra AI (Backend)
+
+JavaScript (específicamente Node.js con el framework Express) es el lenguaje utilizado para el desarrollo del backend de la aplicación Alumbra AI, alojado en la carpeta `alumbra-backend/`.
+
+## ¿Por qué JavaScript (Node.js) para el Backend?
+
+Node.js fue elegido para el backend por varias razones clave:
+
+1.  **Rendimiento y Escalabilidad:** Node.js utiliza un modelo de E/S sin bloqueo controlado por eventos, lo que lo hace eficiente para manejar múltiples conexiones concurrentes. Esto es ideal para aplicaciones API que necesitan ser rápidas y escalables.
+2.  **Ecosistema NPM:** JavaScript cuenta con el Node Package Manager (NPM), el repositorio de paquetes de software más grande del mundo. Esto proporciona acceso a una vasta cantidad_DEPRECATED de bibliotecas y herramientas que pueden acelerar el desarrollo.
+3.  **Lenguaje Unificado (Full-stack JS):** Usar JavaScript tanto en el frontend (con Next.js/React) como en el backend permite a los desarrolladores reutilizar código, compartir lógica (si es aplicable) y mantener una base de conocimientos coherente en todo el stack tecnológico.
+4.  **Framework Express.js:** Express.js es un framework minimalista y flexible para Node.js que simplifica la creación de APIs web robustas. Es ampliamente utilizado y cuenta con una gran comunidad.
+5.  **Desarrollo Rápido:** La naturaleza dinámica de JavaScript y la simplicidad de Express pueden llevar a ciclos de desarrollo más rápidos, especialmente para la creación de APIs RESTful.
+6.  **Comunidad Activa:** Tanto Node.js como Express tienen comunidades grandes y activas, lo que significa abundante documentación, tutoriales y soporte.
+
+## Archivos del Proyecto Escritos en JavaScript (.js) - Backend
+
+Todos los archivos dentro del directorio `alumbra-backend/` están escritos en JavaScript. A continuación, se presenta una descripción general de su estructura y propósito:
+
+*   **`alumbra-backend/app.js`**: Punto de entrada principal de la aplicación Express. Configura middlewares, rutas y manejo de errores.
+*   **`alumbra-backend/server.js`**: Inicializa y arranca el servidor Express, escuchando en un puerto específico.
+
+*   **`alumbra-backend/config/`**: Contiene archivos de configuración.
+    *   `db.config.js`: Configuración para la conexión a la base de datos (conceptual, ya que el proyecto actual no tiene una base de datos activa).
+    *   `env.config.js`: Carga y centraliza el acceso a las variables de entorno (ej. claves API, URL del webhook).
+
+*   **`alumbra-backend/controllers/`**: Manejan la lógica de las solicitudes HTTP y las respuestas.
+    *   `alert.controller.js`: Lógica para gestionar alertas automáticas.
+    *   `analysis.controller.js`: Lógica para procesar texto de conversaciones y devolver análisis.
+    *   `auth.controller.js`: Lógica de autenticación de usuarios (actualmente placeholder).
+    *   `questionnaire.controller.js`: Manejo de envío y recuperación de cuestionarios (actualmente placeholder).
+    *   `webhook.controller.js`: Manejo de webhooks entrantes (ej. del servicio de correo).
+
+*   **`alumbra-backend/middleware/`**: Funciones que se ejecutan durante el ciclo de solicitud-respuesta.
+    *   `auth.middleware.js`: Para proteger rutas que requieren autenticación (placeholder).
+    *   `error.middleware.js`: Middleware global para el manejo de errores.
+    *   `sanitize.input.js`: Para sanitizar entradas y proteger datos sensibles (placeholder).
+    *   `validate.input.js`: Para validar los datos de entrada de las solicitudes (placeholder).
+
+*   **`alumbra-backend/models/`**: Definen los esquemas o modelos de datos (conceptuales, ya que no hay ORM/ODM activo).
+    *   `alert.model.js`: Esquema para rastrear alertas enviadas.
+    *   `analysis.model.js`: Esquema para resultados de análisis.
+    *   `questionnaire.model.js`: Esquema para datos de cuestionarios.
+
+*   **`alumbra-backend/routes/`**: Definen las rutas de la API y las asocian con los controladores.
+    *   `alert.routes.js`: Rutas para la gestión de alertas.
+    *   `analysis.routes.js`: Rutas para el análisis de conversaciones.
+    *   `auth.routes.js`: Rutas para autenticación.
+    *   `questionnaire.routes.js`: Rutas para cuestionarios.
+    *   `webhook.routes.js`: Rutas para recibir webhooks.
+
+*   **`alumbra-backend/services/`**: Contienen la lógica de negocio principal y la interacción con servicios externos.
+    *   `alert.service.js`: Lógica para procesar y activar alertas.
+    *   `analysis.service.js`: Lógica central para realizar el análisis de conversaciones, interactuando con `gemini.service.js`.
+    *   `email.service.js`: Servicio para enviar correos electrónicos a través de un webhook externo (ej. Make.com).
+    *   `gemini.service.js`: Servicio para interactuar con la API de Gemini (o un placeholder de IA si no está Genkit directamente aquí).
+    *   `webhook.service.js`: Lógica para procesar los datos recibidos de webhooks.
+
+*   **`alumbra-backend/utils/`**: Funciones de utilidad compartidas.
+    *   `email.utils.js`: Utilidades para preparar contenido de correos electrónicos.
+    *   `logger.js`: Utilidad para el registro de actividades y errores.
+    *   `text.utils.js`: Utilidades para el preprocesamiento de texto.
+
+El uso de JavaScript con Node.js y Express en el backend proporciona una base sólida y eficiente para manejar la lógica de la API, el procesamiento de datos y la comunicación con servicios externos para Alumbra AI.

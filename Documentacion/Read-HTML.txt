@@ -1,0 +1,26 @@
+# Documentación: HTML en el Proyecto Alumbra AI
+
+HTML (HyperText Markup Language) es el lenguaje de marcado estándar para crear páginas web y aplicaciones web. En el contexto del proyecto Alumbra AI, su uso principal es para definir la estructura y el contenido de las plantillas de correo electrónico.
+
+## ¿Por qué HTML para Plantillas de Correo?
+
+1.  **Estructura y Contenido:** HTML permite definir la estructura semántica del contenido del correo, como encabezados, párrafos, listas, enlaces e imágenes.
+2.  **Estilo (con CSS en línea):** Aunque el soporte de CSS en los clientes de correo electrónico puede ser limitado e inconsistente, HTML permite la inclusión de estilos en línea (y a veces bloques `<style>`) para mejorar la presentación visual de los correos.
+3.  **Compatibilidad:** HTML es el formato universalmente aceptado por los clientes de correo electrónico para renderizar mensajes con formato.
+4.  **Contenido Dinámico (con Motores de Plantillas):** Las plantillas HTML pueden ser utilizadas por motores de plantillas (ya sea en el backend o en un servicio de correo externo) para insertar datos dinámicos (ej. nombre de usuario, detalles del análisis) en el correo antes de ser enviado.
+
+## Archivos del Proyecto que Utilizan HTML (.html)
+
+En el proyecto Alumbra AI, los archivos HTML se encuentran dentro del directorio `alumbra-backend/views/emails/` y sirven como plantillas conceptuales para los correos electrónicos que la aplicación podría enviar:
+
+*   **`alumbra-backend/views/emails/alert.html`:**
+    *   Esta es una plantilla HTML conceptual diseñada para los correos de alerta que se enviarían a un contacto de emergencia.
+    *   Define la estructura del correo de alerta, incluyendo placeholders (ej. `{{ userName }}`, `{{ riskScore }}`) que serían reemplazados por datos reales por el servicio de envío de correos (como Make.com, que maneja el webhook).
+    *   Incluye estilos básicos para mejorar la legibilidad y el impacto visual de la alerta.
+
+*   **`alumbra-backend/views/emails/notification.html`:**
+    *   Esta es una plantilla HTML conceptual para notificaciones generales que la aplicación podría enviar a los usuarios (ej. confirmación de que un análisis se ha completado, aunque esta funcionalidad no está completamente implementada para el envío directo de correos al usuario desde el backend).
+    *   Similar a `alert.html`, utiliza placeholders para contenido dinámico y contiene estilos básicos.
+
+**Nota Importante:**
+En la arquitectura actual de Alumbra AI, el backend no renderiza directamente estas plantillas HTML para enviar correos. En su lugar, envía los datos necesarios (como las variables `emailVariables`) a un servicio de webhook externo (configurado en `WEBHOOK_URL`, por ejemplo, un escenario en Make.com). Este servicio externo es responsable de tomar esos datos, popular una plantilla de correo (que idealmente estaría basada en el diseño de estos archivos HTML conceptuales) y enviar el correo electrónico final. Los archivos `.html` en el repositorio sirven principalmente como una referencia de diseño y contenido para las plantillas que se configurarían en dicho servicio externo.

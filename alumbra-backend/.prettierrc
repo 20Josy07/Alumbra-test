@@ -1,0 +1,16 @@
+// alumbra-backend/.prettierrc.js
+// Basic Prettier configuration for consistency.
+// You can extend this based on your team's preferences.
+module.exports = {
+  printWidth: 100,
+  tabWidth: 2,
+  useTabs: false,
+  semi: true,
+  singleQuote: true,
+  trailingComma: 'es5', // Or 'all' or 'none'
+  bracketSpacing: true,
+  jsxBracketSameLine: false, // Deprecated, use bracketSameLine
+  bracketSameLine: false,
+  arrowParens: 'always', // Or 'avoid'
+  endOfLine: 'lf',
+};

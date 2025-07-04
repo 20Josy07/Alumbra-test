@@ -1,0 +1,60 @@
+# Documentación: TypeScript en el Proyecto Alumbra AI
+
+TypeScript es el lenguaje principal utilizado para el desarrollo del frontend de la aplicación Alumbra AI, construida con Next.js.
+
+## ¿Por qué TypeScript?
+
+TypeScript fue elegido para el frontend por las siguientes razones:
+
+1.  **Tipado Estático:** Proporciona un sistema de tipos robusto que ayuda a detectar errores comunes en tiempo de desarrollo, antes de que lleguen a producción. Esto mejora la calidad y la fiabilidad del código.
+2.  **Mejor Experiencia de Desarrollo:** Las características como el autocompletado, la refactorización segura y la navegación de código mejoran significativamente la productividad del desarrollador, especialmente en proyectos de mayor escala.
+3.  **Mantenibilidad:** El código TypeScript tiende a ser más fácil de entender y mantener a largo plazo, ya que los tipos proporcionan documentación implícita sobre las estructuras de datos y las firmas de las funciones.
+4.  **Integración con Next.js:** Next.js tiene un excelente soporte incorporado para TypeScript, lo que facilita su configuración y uso sin complicaciones adicionales.
+5.  **Ecosistema Moderno:** TypeScript es una tecnología ampliamente adoptada en el desarrollo web moderno y cuenta con una gran comunidad y un vasto ecosistema de bibliotecas y herramientas compatibles.
+
+## Archivos del Proyecto Escritos en TypeScript (.ts, .tsx)
+
+A continuación, se listan los archivos y directorios principales que utilizan TypeScript en el proyecto:
+
+### Configuración del Proyecto
+*   `next.config.ts`: Archivo de configuración principal para Next.js.
+*   `tailwind.config.ts`: Archivo de configuración para Tailwind CSS, escrito en TypeScript para permitir una configuración más dinámica si es necesario.
+*   `tsconfig.json`: Archivo de configuración del compilador de TypeScript, define cómo se compila y verifica el código TypeScript.
+*   `components.json`: Archivo de configuración para ShadCN UI, que gestiona los componentes de la interfaz de usuario.
+
+### Lógica de IA (Genkit)
+*   `src/ai/dev.ts`: Posiblemente un archivo para el desarrollo o pruebas de flujos de IA con Genkit.
+*   `src/ai/flows/analyze-conversation.ts`: Define el flujo de Genkit para analizar conversaciones, incluyendo esquemas de entrada/salida y el prompt para el modelo de IA.
+*   `src/ai/genkit.ts`: Archivo de inicialización y configuración para Genkit, definiendo el plugin de IA (ej. Google AI) y el modelo a utilizar.
+
+### Componentes de la Aplicación (Frontend - Next.js)
+*   **Layouts y Páginas Principales (`src/app/`):**
+    *   `src/app/actions.ts`: Define Server Actions de Next.js para manejar la lógica del lado del servidor invocada desde el cliente (ej. envío de formularios, análisis de conversaciones).
+    *   `src/app/globals.css`: Aunque es un archivo CSS, se menciona aquí porque es fundamental para el estilo global y la configuración del tema (variables CSS HSL de ShadCN) que consumen los componentes TypeScript.
+    *   `src/app/layout.tsx`: El layout raíz de la aplicación Next.js.
+    *   `src/app/page.tsx`: La página de inicio o bienvenida de la aplicación.
+    *   `src/app/(app)/analyze/page.tsx`: Página para la funcionalidad de análisis de conversaciones.
+    *   `src/app/(app)/feedback/page.tsx`: Página para que los usuarios envíen comentarios.
+    *   `src/app/(app)/layout.tsx`: Layout específico para las rutas autenticadas o principales de la aplicación.
+    *   `src/app/(app)/questionnaire/page.tsx`: Página para el cuestionario inicial del usuario.
+    *   `src/app/(app)/support/page.tsx`: Página del centro de soporte.
+
+*   **Componentes Reutilizables (`src/components/`):**
+    *   `src/components/analysis-results.tsx`: Componente para mostrar los resultados del análisis de conversación.
+    *   `src/components/conversation-input-form.tsx`: Formulario para que el usuario ingrese el texto de la conversación.
+    *   `src/components/layout/app-layout.tsx`: Componente principal del layout de la aplicación, incluyendo la barra lateral y el contenido principal.
+    *   `src/components/layout/footer.tsx`: Componente del pie de página.
+    *   `src/components/layout/sidebar-nav.tsx`: Componente para la navegación dentro de la barra lateral.
+    *   `src/components/questionnaire-form.tsx`: Formulario para el cuestionario inicial.
+    *   `src/components/user-details-modal.tsx`: Modal para recolectar datos adicionales del usuario.
+    *   **Componentes de UI (ShadCN - `src/components/ui/`):** Todos los archivos `.tsx` dentro de este directorio son componentes de interfaz de usuario preconstruidos y personalizables (ej. `button.tsx`, `card.tsx`, `dialog.tsx`, `input.tsx`, `sidebar.tsx`, etc.), que utilizan TypeScript para su definición y props.
+
+### Hooks Personalizados
+*   `src/hooks/use-mobile.tsx`: Hook para detectar si el dispositivo es móvil.
+*   `src/hooks/use-toast.ts`: Hook para gestionar y mostrar notificaciones (toasts).
+
+### Librerías y Utilidades
+*   `src/lib/schemas.ts`: Define esquemas de validación de datos utilizando Zod, aprovechando el tipado de TypeScript para asegurar la estructura de los datos.
+*   `src/lib/utils.ts`: Funciones de utilidad generales, como `cn` para la concatenación de clases de Tailwind CSS.
+
+El uso de TypeScript en todos estos archivos contribuye a un desarrollo más robusto, escalable y fácil de mantener para el frontend de Alumbra AI.

@@ -1,0 +1,24 @@
+# Documentación: Markdown en el Proyecto Alumbra AI
+
+Markdown es un lenguaje de marcado ligero con una sintaxis de formato de texto simple. Su objetivo es ser lo más legible posible en su forma de texto sin formato y, al mismo tiempo, permitir la conversión a HTML (y muchos otros formatos) para su visualización.
+
+## ¿Por qué Markdown?
+
+1.  **Simplicidad y Legibilidad:** La sintaxis de Markdown es intuitiva y se centra en la legibilidad del contenido en bruto. Esto facilita la escritura y la lectura de la documentación sin necesidad de herramientas complejas.
+2.  **Ampliamente Utilizado:** Es el estándar de facto para escribir archivos README, documentación en plataformas como GitHub, GitLab, Bitbucket, y para muchos sistemas de gestión de contenido y blogs.
+3.  **Versatilidad:** Aunque simple, permite estructurar documentos con encabezados, listas, enlaces, imágenes, bloques de código, tablas y más.
+4.  **Conversión Fácil:** Se puede convertir fácilmente a HTML y otros formatos, lo que lo hace ideal para la documentación que necesita ser visualizada en la web.
+
+## Archivos del Proyecto que Utilizan Markdown (.md)
+
+En el proyecto Alumbra AI, Markdown se utiliza principalmente para los archivos de documentación (READMEs):
+
+*   **`README.md` (Raíz del Proyecto):**
+    *   Este es el archivo principal de documentación para todo el proyecto Alumbra AI, enfocado en el frontend Next.js.
+    *   Proporciona una introducción al proyecto, instrucciones para desarrolladores sobre cómo clonar, configurar y ejecutar la aplicación (frontend y backend), y cualquier otra información relevante para empezar con el proyecto.
+
+*   **`alumbra-backend/README.md`:**
+    *   Este archivo README es específico para el componente backend del proyecto Alumbra AI.
+    *   Describe la arquitectura del backend, sus funcionalidades principales, el flujo de trabajo, consideraciones de seguridad y privacidad, tecnologías utilizadas, estructura del proyecto, instrucciones de instalación y ejecución específicas para el backend, y ejemplos de endpoints API.
+
+El uso de Markdown para estos archivos asegura que la documentación del proyecto sea fácil de escribir, mantener y leer, tanto directamente en el repositorio como cuando se renderiza en plataformas como GitHub.

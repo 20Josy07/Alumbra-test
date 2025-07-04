@@ -1,0 +1,159 @@
+
+/* stylelint-disable-next-line at-rule-no-unknown */
+@tailwind base;
+/* stylelint-disable-next-line at-rule-no-unknown */
+@tailwind components;
+/* stylelint-disable-next-line at-rule-no-unknown */
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 273 49% 18%; /* New: #2e1943 */
+    --foreground: 270 20% 90%; /* Copied from .dark */
+
+    --card: 273 49% 22%; /* New: Derived from new background (Lightness +4%) */
+    --card-foreground: 270 20% 90%; /* Copied from .dark */
+
+    --popover: 273 49% 22%; /* New: Derived from new background (Lightness +4%) */
+    --popover-foreground: 270 20% 90%; /* Copied from .dark */
+
+    --primary: 285 60% 70%; /* Copied from .dark */
+    --primary-foreground: 274 32% 15%; /* Copied from .dark */
+
+    --secondary: 274 25% 30%; /* Copied from .dark */
+    --secondary-foreground: 270 15% 80%; /* Copied from .dark */
+
+    --muted: 274 20% 45%; /* Copied from .dark */
+    --muted-foreground: 270 10% 65%; /* Copied from .dark */
+
+    --accent: 285 60% 70%; /* Copied from .dark */
+    --accent-foreground: 274 32% 15%; /* Copied from .dark */
+
+    --destructive: 0 75% 60%; /* Copied from .dark */
+    --destructive-foreground: 0 0% 100%; /* Copied from .dark */
+
+    --border: 274 25% 28%; /* Copied from .dark */
+    --input: 274 25% 28%;  /* Copied from .dark */
+    --ring: 285 60% 75%; /* Copied from .dark */
+
+    --radius: 0.5rem;
+
+    --chart-1: 285 60% 70%; /* Copied from .dark */
+    --chart-2: 270 50% 60%; /* Copied from .dark */
+    --chart-3: 295 55% 65%; /* Copied from .dark */
+    --chart-4: 260 45% 55%; /* Copied from .dark */
+    --chart-5: 300 50% 60%; /* Copied from .dark */
+
+    /* Sidebar specific colors */
+    --sidebar-background: 273 49% 16%; /* New: Derived from new background (Lightness -2%) */
+    --sidebar-foreground: 270 20% 85%; /* Copied from .dark sidebar */
+    --sidebar-primary: 285 60% 70%; /* Copied from .dark sidebar */
+    --sidebar-primary-foreground: 274 32% 15%; /* Copied from .dark sidebar */
+    --sidebar-accent: 285 60% 75%; /* Copied from .dark sidebar */
+    --sidebar-accent-foreground: 274 32% 15%; /* Copied from .dark sidebar */
+    --sidebar-border: 274 25% 25%; /* Copied from .dark sidebar */
+    --sidebar-ring: 285 60% 75%; /* Copied from .dark sidebar */
+  }
+
+  .dark {
+    --background: 273 49% 18%; 
+    --foreground: 270 20% 90%;
+    --card: 273 49% 22%; 
+    --card-foreground: 270 20% 90%;
+    --popover: 273 49% 22%; 
+    --popover-foreground: 270 20% 90%;
+    --primary: 285 60% 70%;
+    --primary-foreground: 274 32% 15%;
+    --secondary: 274 25% 30%;
+    --secondary-foreground: 270 15% 80%;
+    --muted: 274 20% 45%;
+    --muted-foreground: 270 10% 65%;
+    --accent: 285 60% 70%;
+    --accent-foreground: 274 32% 15%;
+    --destructive: 0 75% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 274 25% 28%;
+    --input: 274 25% 28%;
+    --ring: 285 60% 75%;
+    --chart-1: 285 60% 70%;
+    --chart-2: 270 50% 60%;
+    --chart-3: 295 55% 65%;
+    --chart-4: 260 45% 55%;
+    --chart-5: 300 50% 60%;
+    --sidebar-background: 273 49% 16%;
+    --sidebar-foreground: 270 20% 85%;
+    --sidebar-primary: 285 60% 70%;
+    --sidebar-primary-foreground: 274 32% 15%;
+    --sidebar-accent: 285 60% 75%;
+    --sidebar-accent-foreground: 274 32% 15%;
+    --sidebar-border: 274 25% 25%;
+    --sidebar-ring: 285 60% 75%;
+  }
+}
+
+@media (min-width: 768px) {
+    .md\:gap-12 {
+        gap: 3rem; /* Reverting to default Tailwind gap-12 value */
+    }
+}
+
+@layer base {
+  * {
+    /* stylelint-disable-next-line at-rule-no-unknown */
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+  }
+}
+    
+
+@keyframes light-move-1 {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+  25% { transform: translate(20px, -30px) scale(1.1); opacity: 0.7; }
+  50% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+  75% { transform: translate(-25px, 15px) scale(0.9); opacity: 0.5; }
+  100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+}
+
+@keyframes light-move-2 {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+  25% { transform: translate(-15px, 25px) scale(0.95); opacity: 0.6; }
+  50% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+  75% { transform: translate(30px, -20px) scale(1.05); opacity: 0.4; }
+  100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+}
+
+@keyframes light-move-3 {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.55; }
+  25% { transform: translate(10px, 35px) scale(1.05); opacity: 0.65; }
+  50% { transform: translate(0, 0) scale(1); opacity: 0.55; }
+  75% { transform: translate(-35px, -10px) scale(0.9); opacity: 0.45; }
+  100% { transform: translate(0, 0) scale(1); opacity: 0.55; }
+}
+
+@keyframes light-move-4 {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.65; }
+  25% { transform: translate(-20px, -10px) scale(0.9); opacity: 0.55; }
+  50% { transform: translate(0, 0) scale(1); opacity: 0.65; }
+  75% { transform: translate(15px, 30px) scale(1.1); opacity: 0.75; }
+  100% { transform: translate(0, 0) scale(1); opacity: 0.65; }
+}
+
+.animate-light-move-1 {
+  animation: light-move-1 20s infinite ease-in-out;
+}
+
+.animate-light-move-2 {
+  animation: light-move-2 22s infinite ease-in-out;
+}
+
+.animate-light-move-3 {
+  animation: light-move-3 25s infinite ease-in-out;
+}
+
+.animate-light-move-4 {
+  animation: light-move-4 23s infinite ease-in-out;
+}

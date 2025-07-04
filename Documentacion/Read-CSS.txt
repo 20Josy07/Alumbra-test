@@ -1,0 +1,26 @@
+# Documentación: CSS en el Proyecto Alumbra AI
+
+CSS (Cascading Style Sheets) es el lenguaje utilizado para describir la presentación y el estilo de los documentos HTML. En el proyecto Alumbra AI, CSS se emplea principalmente a través del framework Tailwind CSS y la configuración de temas para los componentes de ShadCN UI.
+
+## ¿Por qué CSS (con Tailwind CSS y ShadCN)?
+
+1.  **Tailwind CSS - Utility-First:**
+    *   **Desarrollo Rápido:** Permite aplicar estilos directamente en el HTML (o JSX en este caso) mediante clases de utilidad, lo que acelera el proceso de diseño y prototipado.
+    *   **Consistencia:** Facilita la creación de interfaces de usuario consistentes al proporcionar un conjunto predefinido de utilidades de diseño.
+    *   **Personalizable:** Aunque ofrece valores predeterminados, Tailwind es altamente personalizable a través de su archivo de configuración (`tailwind.config.ts`).
+    *   **Tamaño Optimizado:** En producción, Tailwind CSS elimina las clases no utilizadas, resultando en archivos CSS pequeños.
+
+2.  **ShadCN UI - Componentes Estilizados:**
+    *   **Reutilizables y Accesibles:** ShadCN UI proporciona una colección de componentes de interfaz de usuario bien diseñados, accesibles y personalizables, construidos sobre Radix UI y estilizados con Tailwind CSS.
+    *   **Control Total:** A diferencia de las bibliotecas de componentes tradicionales, copias los componentes de ShadCN directamente a tu proyecto, lo que te da control total sobre su código y estilo.
+    *   **Tematización con Variables CSS:** ShadCN UI utiliza variables CSS (definidas en `src/app/globals.css`) para la tematización, lo que permite cambiar fácilmente la paleta de colores y otros aspectos del diseño de manera global.
+
+## Archivos del Proyecto que Utilizan CSS
+
+*   **`src/app/globals.css`**:
+    *   Este es el archivo CSS global principal para el frontend de la aplicación Next.js.
+    *   **Directivas de Tailwind CSS:** Incluye las directivas `@tailwind base;`, `@tailwind components;`, y `@tailwind utilities;` que son necesarias para que Tailwind CSS funcione.
+    *   **Variables de Tema de ShadCN UI:** Define las variables CSS HSL (Tono, Saturación, Luminosidad) que controlan la apariencia de los componentes ShadCN UI. Esto incluye colores para el fondo, primer plano, primario, secundario, acento, destructivo, bordes, entradas, etc., tanto para el modo claro como para el oscuro.
+    *   **Estilos Base Personalizados:** Puede contener estilos base adicionales o reseteos que se aplican globalmente a la aplicación.
+
+El enfoque de utilizar Tailwind CSS junto con los componentes personalizables de ShadCN UI y su sistema de tematización basado en variables CSS permite un desarrollo de interfaz de usuario eficiente, consistente y moderno para Alumbra AI.

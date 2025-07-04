@@ -1,0 +1,63 @@
+<!-- alumbra-backend/views/emails/alert.html -->
+<!-- This is a conceptual HTML template for an alert email. -->
+<!-- In practice, the actual templating (e.g., using Handlebars, MJML, or proprietary system) -->
+<!-- would be handled by the external email service triggered via webhook. -->
+<!-- This file serves as a design reference for that external template. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumbra AI Alert</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; background-color: #f4f4f4; }
+        .container { max-width: 600px; margin: 20px auto; padding: 20px; background-color: #fff; border: 1px solid #ddd; border-radius: 5px; }
+        .header { background-color: #d9534f; /* Alert color */ color: #fff; padding: 10px; text-align: center; border-radius: 5px 5px 0 0; }
+        .header h1 { margin: 0; font-size: 24px; }
+        .content { padding: 20px; }
+        .content p { margin-bottom: 15px; }
+        .highlight { font-weight: bold; color: #d9534f; }
+        .footer { text-align: center; margin-top: 20px; font-size: 0.9em; color: #777; }
+        .button { display: inline-block; padding: 10px 20px; margin-top: 15px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Alumbra AI - Important Alert</h1>
+        </div>
+        <div class="content">
+            <p>Dear Emergency Contact,</p>
+            
+            <p>This is an automated alert from <strong>Alumbra AI</strong> regarding {{ userName }}. A recent conversation analysis processed by them has indicated a potential risk that we believe is important to bring to your attention.</p>
+            
+            <p><strong>Details of the Concern:</strong></p>
+            <ul>
+                <li><strong>Risk Level Indicated:</strong> <span class="highlight">{{ riskScore }} out of 10</span></li>
+                <li><strong>Summary:</strong> {{ riskSummary }}</li>
+            </ul>
+            
+            <p>We understand this information may be concerning. The purpose of this alert is to enable you to check in with {{ userName }} and offer support if needed.</p>
+            
+            <p>Alumbra AI is a tool designed to help individuals identify potential emotional abuse or manipulation in conversations. It does not provide medical or legal advice.</p>
+
+            <p><strong>Next Steps:</strong></p>
+            <ul>
+                <li>We encourage you to reach out to {{ userName }} to understand their situation better and offer your support.</li>
+                <li>For general information and resources on dealing with emotional abuse and finding support, please visit our resource page: 
+                    <a href="{{ supportLink }}" class="button" style="color: #ffffff; background-color: #007bff;">Support Resources</a>
+                </li>
+            </ul>
+
+            <p>Your role as an emergency contact is vital. Thank you for your attention to this matter.</p>
+            
+            <p>Sincerely,<br>The Alumbra AI Team</p>
+        </div>
+        <div class="footer">
+            <p>Alumbra AI &copy; {{ currentYear }} | This is an automated message. Please do not reply directly to this email.</p>
+            <p><a href="[Your App's Main URL]">Visit Alumbra AI</a></p>
+        </div>
+    </div>
+</body>
+</html>
