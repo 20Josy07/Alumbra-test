@@ -3,7 +3,6 @@ import './globals.css';
 import { AuthProvider } from '@/contexts/auth-context';
 import { Toaster } from "@/components/ui/toaster";
 import AppContent from '@/components/layout/app-content'; // New import for client component
-import { BetaAlertDialog } from '@/components/beta-alert-dialog';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -34,7 +33,6 @@ export default function RootLayout({
           <AppContent>{children}</AppContent>
           <Toaster />
         </AuthProvider>
-        <BetaAlertDialog />
       </body>
     </html>
   );

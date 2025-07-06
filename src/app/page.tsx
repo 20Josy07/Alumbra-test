@@ -50,7 +50,7 @@ import {
 } from 'lucide-react';
 import AnimatedShinyText from '@/components/ui/animated-shiny-text';
 import { cn } from "@/lib/utils";
-import { getReviews, type Review as ServerReview } from './actions';
+import { getReviews, getStatistics, type Review as ServerReview } from './actions';
 import { Spinner } from '@/components/ui/spinner';
 import { useAuth } from '@/contexts/auth-context';
 import { useToast } from '@/hooks/use-toast';
@@ -173,6 +173,73 @@ export function HeroSection({ user, loading }: HeroSectionProps) {
   )
 }
 
+interface Statistics {
+  users: string;
+  conversations: string;
+  alerts: string;
+}
+
+interface StatisticsSectionProps {
+  statistics: Statistics | null;
+  isLoading: boolean;
+}
+
+export function StatisticsSection({ statistics, isLoading }: StatisticsSectionProps) {
+  return (
+    <section className="py-20 bg-background w-full">
+      <div className="container mx-auto px-4 text-center">
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          Nuestro impacto en el mundo
+        </h2>
+        <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-16">
+          Estamos comprometidos con la protección del bienestar emocional. Aquí algunos números que demuestran nuestro alcance.
+        </p>
+
+        {isLoading ? (
+          <Spinner size={48} className="text-primary" />
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {/* Card 1: Usuarios en la plataforma */}
+            <Card className="bg-card p-6 rounded-2xl shadow-lg flex flex-col items-start text-left">
+              <CardContent className="p-0">
+                <h3 className="text-4xl font-bold text-foreground mb-2">{statistics?.users || 'Cargando...'}</h3>
+                <p className="text-lg font-semibold text-muted-foreground mb-4">Usuarios en la plataforma</p>
+                <p className="text-sm text-muted-foreground">
+                  Personas que han utilizado Alumbra para analizar sus conversaciones.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Card 2: Conversaciones analizadas */}
+            <Card className="bg-[#1a1a2e] p-6 rounded-2xl shadow-lg flex flex-col items-start text-left text-white">
+              <CardContent className="p-0">
+                <h3 className="text-4xl font-bold mb-2">{statistics?.conversations || 'Cargando...'}</h3>
+                <p className="text-lg font-semibold text-white/80 mb-4">
+                  Conversaciones analizadas
+                </p>
+                <p className="text-sm text-white/60">
+                  Número total de conversaciones procesadas por nuestra IA.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Card 3: Alertas generadas */}
+            <Card className="bg-[#6a0dad] p-6 rounded-2xl shadow-lg flex flex-col items-start text-left text-white">
+              <CardContent className="p-0">
+                <h3 className="text-4xl font-bold mb-2">{statistics?.alerts || 'Cargando...'}</h3>
+                <p className="text-lg font-semibold text-white/80 mb-4">Alertas generadas</p>
+                <p className="text-sm text-white/60">
+                  Alertas de riesgo emitidas para proteger el bienestar de los usuarios.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
 export function HowItWorks() {
   const steps = [
     {
@@ -231,57 +298,61 @@ export function HowItWorks() {
 export function Features() {
   const features = [
     {
-      icon: Zap,
       title: "Análisis instantáneo",
       description: "Resultados en segundos para conversaciones de WhatsApp y redes sociales",
     },
     {
-      icon: Brain,
       title: "Detección inteligente",
       description: "IA avanzada que identifica humillación, manipulación y control emocional",
     },
     {
-      icon: Heart,
       title: "Recomendaciones personalizadas",
       description: "Consejos específicos para proteger tu bienestar emocional",
-      iconClassName: "text-primary-foreground", 
     },
     {
-      icon: Shield,
       title: "Privacidad total",
       description: "Sin almacenamiento de datos sensibles, análisis completamente privado",
     },
     {
-      icon: Smartphone,
       title: "100% gratuito",
       description: "Acceso libre para todos, sin costos ocultos ni suscripciones",
     },
      {
-      icon: Disc3,
       title: "Soporte Comunitario",
       description: "Conéctate con otros y comparte experiencias de forma segura.",
+    },
+    {
+      title: "Multiplataforma",
+      description: "Disponible en web, móvil y próximamente como app, para que siempre tengas apoyo a la mano.",
+    },
+    {
+      title: "Alertas tempranas",
+      description: "Recibe notificaciones cuando se detectan señales de posible abuso emocional o manipulación recurrente.",
     },
   ];
 
   return (
     <section id="funcionalidades" className="py-20 bg-background w-full">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">Funcionalidades que te protegen</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Herramientas poderosas diseñadas para tu bienestar emocional y privacidad
+      <div className="container mx-auto px-4 flex flex-col lg:flex-row gap-16 items-start">
+        <div className="lg:w-1/3 text-center lg:text-left">
+          <p className="text-sm font-semibold text-purple-700 mb-2">Funcionalidades que te protegen</p>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight">Herramienta potente para cuidar tu bienestar emocional</h2>
+          <p className="text-lg text-muted-foreground max-w-md mx-auto lg:mx-0">
+            En Alumbra, buscamos empoderar a las personas para identificar el abuso emocional en sus relaciones digitales, con una herramienta privada, accesible y potenciada por IA que promueve el bienestar y decisiones informadas.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
           {features.map((feature, index) => (
-            <div key={index} className="group h-full">
-              <div className="bg-card rounded-2xl p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-border h-full flex flex-col">
-                <div className="w-16 h-16 bg-primary text-primary-foreground rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <feature.icon className={cn("w-8 h-8", feature.iconClassName || "text-primary-foreground")} />
-                </div>
-                <h3 className="text-xl font-semibold text-card-foreground mb-4 text-center">{feature.title}</h3>
-                <p className="text-muted-foreground leading-relaxed flex-grow text-center">{feature.description}</p>
+            <div key={index} className="flex items-start space-x-4">
+              <div className="flex-shrink-0">
+                <svg className="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-foreground mb-1">{feature.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
               </div>
             </div>
           ))}
@@ -548,30 +619,28 @@ export function Footer() {
   }, []);
 
   return (
-    <footer className="bg-[#1a0d26] py-12 w-full">
+    <footer className="bg-[#0a0d1a] py-12 w-full text-white/70">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Brand */}
-          <div className="col-span-1 md:col-span-2">
+          {/* Company Info */}
+          <div className="col-span-1 md:col-span-1">
             <div className="flex items-center space-x-2 mb-4">
-               {/* <div className="w-8 h-8 bg-gradient-to-br from-[#8B5CF6] to-[#6EE7B7] rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">A</span>
-              </div> */}
               <span className="text-white font-bold text-xl">Alumbra</span>
             </div>
-            <p className="text-white/70 mb-6 max-w-md">
+            <p className="mb-6 max-w-xs">
               Ilumina tu bienestar emocional con inteligencia artificial. Detecta abuso psicológico en conversaciones
               digitales de forma gratuita y privada.
             </p>
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2 text-white/60">
-                <Heart className="w-4 h-4 text-fuchsia-500" />
-                <span className="text-sm">100% Gratuito</span>
-              </div>
-              <div className="flex items-center space-x-2 text-white/60">
-                <Shield className="w-4 h-4 text-[#8B5CF6]" />
-                <span className="text-sm">Privado</span>
-              </div>
+            <div className="flex space-x-4">
+              <a
+                href="mailto:hola@alumbra.ai"
+                className="hover:text-white transition-colors"
+              >
+                <Mail className="w-6 h-6" />
+              </a>
+              <a href="https://www.instagram.com/alumbra.ia/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                <Instagram className="w-6 h-6" />
+              </a>
             </div>
           </div>
 
@@ -616,15 +685,9 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="https://github.com/alumbra-ai" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors flex items-center space-x-2">
-                  <Github className="w-4 h-4" />
-                  <span>GitHub</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://x.com/AlumbraIA" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors flex items-center space-x-2">
-                  <Twitter className="w-4 h-4" />
-                  <span>Twitter</span>
+                <a href="https://www.instagram.com/alumbra.ia/" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors flex items-center space-x-2">
+                  <Instagram className="w-4 h-4" />
+                  <span>Instagram</span>
                 </a>
               </li>
             </ul>
@@ -687,6 +750,7 @@ export default function HomePage() {
   return (
     <main className="flex min-h-screen flex-col items-center bg-background text-foreground w-full">
       <HeroSection user={user} loading={isLoadingReviews} />
+      <StatisticsSection />
       <HowItWorks />
       <Features />
       <Testimonials reviews={reviews} isLoading={isLoadingReviews} />
