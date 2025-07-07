@@ -27,7 +27,6 @@ import { useSidebar } from '@/components/ui/sidebar';
 import { useToast } from '@/hooks/use-toast';
 import { signOut as firebaseSignOut } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
-import AuthButton from '@/components/auth/auth-button';
 
 interface AppLayoutProps {
   children: ReactNode;
