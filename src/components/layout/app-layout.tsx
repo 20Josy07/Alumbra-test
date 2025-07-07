@@ -160,7 +160,9 @@ export default function AppLayout({ children }: AppLayoutProps) {
                         <UserCircle className="h-full w-full text-sidebar-foreground/70" />
                       )}
                       <AvatarFallback>{getInitials(user.displayName)}</AvatarFallback>
-                    </Button>
+                    </Avatar>
+                    <span className="truncate">{user.displayName || user.email}</span>
+                  </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-56 bg-popover text-popover-foreground">
                     <DropdownMenuLabel className="truncate">{user.displayName || user.email}</DropdownMenuLabel>
