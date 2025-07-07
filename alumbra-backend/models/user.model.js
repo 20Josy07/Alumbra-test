@@ -3,8 +3,9 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
   firebaseUid: {
     type: String,
-    required: true,
+    required: false, // Make firebaseUid optional for admin-created users
     unique: true,
+    sparse: true, // Allows multiple documents to have null/undefined firebaseUid
   },
   email: {
     type: String,
@@ -12,6 +13,10 @@ const userSchema = new mongoose.Schema({
     unique: true,
     trim: true,
     lowercase: true,
+  },
+  password: {
+    type: String,
+    required: false, // Password can be optional if using Firebase for primary auth
   },
   displayName: {
     type: String,
@@ -24,7 +29,7 @@ const userSchema = new mongoose.Schema({
   },
   type: {
     type: String,
-    enum: ['user', 'psychologist'],
+    enum: ['user', 'psychologist', 'admin'], // Add 'admin' role
     default: 'user',
   },
   // Add any other user-related fields here

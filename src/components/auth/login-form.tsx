@@ -9,6 +9,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import { useRouter } from 'next/navigation';
 import { Spinner } from '@/components/ui/spinner';
+import { useAuth } from '@/contexts/auth-context';
 
 export function LoginForm() {
   const [email, setEmail] = useState('');
@@ -24,10 +25,18 @@ export function LoginForm() {
       await signInWithEmailAndPassword(auth, email, password);
       toast({
         title: "Inicio de sesión exitoso",
-        description: "Redirigiendo a tu dashboard...",
+        description: "Redirigiendo...",
         variant: "success",
       });
-      router.push('/dashboard'); // Redirect to dashboard on successful login
+      // Redirect based on user role
+      const userRole = auth.currentUser?.uid ? (await auth.currentUser.getIdTokenResult(true)).claims.role : 'user';
+      if (userRole === 'admin') {
+        router.push('/admin');
+      } else if (userRole === 'psychologist') {
+        router.push('/dashboard/patients');
+      } else {
+        router.push('/dashboard');
+      }
     } catch (error: any) {
       toast({
         title: "Error al iniciar sesión",

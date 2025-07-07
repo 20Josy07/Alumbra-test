@@ -19,10 +19,14 @@
   "author": "Alumbra AI Team",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "firebase-admin": "^13.4.0",
     "helmet": "^7.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.4.4",
     "morgan": "^1.10.0",
     "node-fetch": "^2.7.0"
   },

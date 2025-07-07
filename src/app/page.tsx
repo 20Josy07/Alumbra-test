@@ -8,19 +8,7 @@ import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardHeader,
 } from "@/components/ui/card";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader as AlertDialogHeaderComponent,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   AlertTriangle,
@@ -29,26 +17,17 @@ import {
   Sparkles,
   Heart,
   Instagram,
-  Twitter,
   FileText,
   Users,
   MessageSquare,
   BarChart3,
-  Gauge,
-  Lightbulb,
-  Zap,
-  Smartphone,
-  Disc3,
   ChevronDown,
   ChevronUp,
-  ArrowRight,
   Quote,
-  MessageCircle,
-  Brain,
-  Mail,
-  Github
+  Mail
 } from 'lucide-react';
 import AnimatedShinyText from '@/components/ui/animated-shiny-text';
+import TerminalTextAnimation from '@/components/ui/terminal-text-animation';
 import { cn } from "@/lib/utils";
 import { getReviews, getStatistics, type Review as ServerReview } from './actions';
 import { Spinner } from '@/components/ui/spinner';
@@ -64,9 +43,9 @@ interface HeroSectionProps {
   loading: boolean;
 }
 
-export function HeroSection({ user, loading }: HeroSectionProps) {
+export const HeroSection = React.memo(function HeroSection({ user, loading }: HeroSectionProps) {
   return (
-    <section className="relative min-h-[80vh] bg-gradient-to-br from-[#581c87] via-[#301744] to-[#1e0a2b] flex flex-col items-center px-6 overflow-hidden w-full">
+    <section className="relative min-h-[70vh] bg-gradient-to-br from-[#581c87] via-[#301744] to-[#1e0a2b] flex flex-col items-center px-6 overflow-hidden w-full">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Animated background lights */}
@@ -76,8 +55,8 @@ export function HeroSection({ user, loading }: HeroSectionProps) {
         <div className="absolute bottom-[20%] right-[20%] w-28 h-28 md:w-40 md:h-40 bg-fuchsia-500/30 rounded-full blur-2xl animate-light-move-4 delay-1300 opacity-65"></div>
       </div>
 
-      <div className="relative z-10 w-full max-w-6xl flex flex-col md:flex-row items-center justify-between text-center md:text-left flex-grow pt-16 pb-16 md:pt-24 md:pb-32">
-        <div className="flex-1 flex flex-col items-center md:items-start md:mr-24">
+      <div className="relative z-10 w-full max-w-6xl flex flex-col md:flex-row items-center justify-between text-center md:text-left flex-grow pt-16 pb-8 md:pt-24 md:pb-16">
+        <div className="flex-1 flex flex-col items-start md:mr-24">
           {/* Badge */}
           <div className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-sm font-medium text-white backdrop-blur-sm transition-all duration-300 hover:scale-105 mb-6">
             <span className="mr-2 text-purple-300">✨</span> Gratis • Privado • Impulsado por IA
@@ -131,7 +110,7 @@ export function HeroSection({ user, loading }: HeroSectionProps) {
               asChild
               variant="outline"
               size="lg"
-              className="border-white/30 text-white hover:bg-white/10 px-8 py-4 text-lg rounded-full"
+              className="border-primary/30 text-primary hover:bg-primary/10 px-8 py-4 text-lg rounded-full"
             >
               <Link href="/como-funciona">
                 Ver cómo funciona
@@ -158,20 +137,56 @@ export function HeroSection({ user, loading }: HeroSectionProps) {
           </div>
         </div>
 
-        {/* Screenshot Placeholder */}
+        {/* Terminal Screenshot Mockup */}
         <div className="flex-1 flex justify-center md:justify-end">
-          <div className="w-full max-w-md md:max-w-none md:w-[600px] h-[306px] md:h-[410px] rounded-xl shadow-2xl border border-white/10 overflow-hidden">
-            <img
-              src="/Alumbra.png"
-              alt="Captura de pantalla de Alumbra"
-              className="w-full h-full object-cover scale-115"
-            />
+          <div className="w-full max-w-md md:max-w-none md:w-[600px] h-[380px] md:h-[450px] rounded-xl shadow-2xl border border-white/10 overflow-hidden bg-gradient-to-br from-[#1e0a2b] to-[#0a0d1a] flex flex-col transform transition-all duration-500 hover:scale-[1.01] hover:shadow-3xl">
+            {/* Terminal Header */}
+            <div className="flex items-center p-3 bg-[#301744] border-b border-white/15">
+              <div className="flex space-x-2">
+                <span className="w-3 h-3 bg-red-500 rounded-full shadow-sm"></span>
+                <span className="w-3 h-3 bg-yellow-500 rounded-full shadow-sm"></span>
+                <span className="w-3 h-3 bg-green-500 rounded-full shadow-sm"></span>
+              </div>
+              <div className="flex-grow text-center text-white/70 text-sm font-mono tracking-wide">
+                Análisis de Conversación
+              </div>
+            </div>
+
+            {/* Terminal Content */}
+            <div className="flex-grow p-6 text-white/90 text-sm font-mono flex flex-col backdrop-blur-sm">
+              {/* Conversation Text */}
+              <div className="bg-[#301744]/70 rounded-lg p-5 mb-5 flex-grow flex items-center justify-center border border-white/5 shadow-inner h-[150px] overflow-hidden">
+                <TerminalTextAnimation
+                  textToType={conversationExampleText}
+                  typingSpeed={40}
+                  className="text-white/90 text-base md:text-lg leading-relaxed"
+                />
+              </div>
+
+              {/* Emotional State */}
+              <div className="mb-4">
+                <h3 className="text-white/60 text-xs font-semibold uppercase tracking-wider mb-1">Estado Emocional</h3>
+                <div className="flex items-center text-red-400 bg-red-600/20 rounded-md px-3 py-2">
+                  <Frown className="w-5 h-5 mr-2 text-red-300" />
+                  <span className="text-lg font-medium">Negativo</span>
+                </div>
+              </div>
+
+              {/* Alert */}
+              <div>
+                <h3 className="text-white/60 text-xs font-semibold uppercase tracking-wider mb-1">Alerta</h3>
+                <div className="flex items-center text-red-500 bg-red-600/20 rounded-md px-3 py-2">
+                  <AlertTriangle className="w-5 h-5 mr-2 text-red-400" />
+                  <span className="text-lg font-medium">Abuso / Manipulación</span>
+                </div>
+              </div>
+            </div>
+          </div>
           </div>
         </div>
-      </div>
     </section>
   )
-}
+});
 
 interface Statistics {
   users: string;
@@ -184,7 +199,7 @@ interface StatisticsSectionProps {
   isLoading: boolean;
 }
 
-export function StatisticsSection({ statistics, isLoading }: StatisticsSectionProps) {
+export const StatisticsSection = React.memo(function StatisticsSection({ statistics, isLoading }: StatisticsSectionProps) {
   return (
     <section className="py-20 bg-background w-full">
       <div className="container mx-auto px-4 text-center">
@@ -238,9 +253,9 @@ export function StatisticsSection({ statistics, isLoading }: StatisticsSectionPr
       </div>
     </section>
   );
-}
+});
 
-export function HowItWorks() {
+export const HowItWorks = React.memo(function HowItWorks() {
   const steps = [
     {
       icon: FileText,
@@ -293,9 +308,9 @@ export function HowItWorks() {
       </div>
     </section>
   );
-}
+});
 
-export function Features() {
+export const Features = React.memo(function Features() {
   const features = [
     {
       title: "Análisis instantáneo",
@@ -360,7 +375,7 @@ export function Features() {
       </div>
     </section>
   );
-}
+});
 
 function ReviewCard({ review }: { review: ServerReview }) {
   const getInitials = (name: string | null | undefined): string => {
@@ -405,7 +420,7 @@ function ReviewCard({ review }: { review: ServerReview }) {
 }
 
 
-export function Testimonials({ reviews, isLoading }: { reviews: ServerReview[], isLoading: boolean }) {
+export const Testimonials = React.memo(function Testimonials({ reviews, isLoading }: { reviews: ServerReview[], isLoading: boolean }) {
   const uniqueReviews = React.useMemo(() => {
     return [...new Map(reviews.map(item => [item['text'], item])).values()];
   }, [reviews]);
@@ -458,9 +473,9 @@ export function Testimonials({ reviews, isLoading }: { reviews: ServerReview[], 
       <div className="absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-muted/20 to-transparent pointer-events-none z-10 md:block hidden"></div>
     </section>
   );
-}
+});
 
-export function FeedbackCallToAction() {
+export const FeedbackCallToAction = React.memo(function FeedbackCallToAction() {
   return (
     <section className="py-12 bg-background w-full text-center">
       <div className="container mx-auto px-4">
@@ -479,9 +494,9 @@ export function FeedbackCallToAction() {
       </div>
     </section>
   );
-}
+});
 
-export function Mission() {
+export const Mission = React.memo(function Mission() {
   return (
     <section id="mission" className="py-20 bg-muted/30 w-full">
       <div className="container mx-auto px-4 text-center">
@@ -521,10 +536,10 @@ export function Mission() {
       </div>
     </section>
   );
-}
+});
 
 
-export function FAQ() {
+export const FAQ = React.memo(function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   const faqs = [
@@ -608,9 +623,9 @@ export function FAQ() {
       </div>
     </section>
   )
-}
+});
 
-export function Footer() {
+export const Footer = React.memo(function Footer() {
   const [currentYear, setCurrentYear] = useState<string | number>('');
 
   useEffect(() => {
@@ -703,26 +718,24 @@ export function Footer() {
       </div>
     </footer>
   )
-}
+});
 
 
 export default function HomePage() {
   const { user } = useAuth();
   const { toast } = useToast();
-  const [currentYear, setCurrentYear] = useState<string | number>('');
   const [reviews, setReviews] = useState<ServerReview[]>([]);
   const [isLoadingReviews, setIsLoadingReviews] = useState(true);
-  const [reviewsError, setReviewsError] = useState<string | null>(null);
+  const [statistics, setStatistics] = useState<Statistics | null>(null);
+  const [isLoadingStatistics, setIsLoadingStatistics] = useState(true);
 
   const fetchReviewsData = useCallback(async () => {
     setIsLoadingReviews(true);
-    setReviewsError(null);
     try {
       const result = await getReviews();
       if (result.success && result.data) {
         setReviews(result.data);
       } else {
-        setReviewsError(result.error || "No se pudieron cargar los comentarios.");
         toast({
           variant: "destructive",
           title: "Error al Cargar Comentarios",
@@ -731,7 +744,6 @@ export default function HomePage() {
       }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : "Error desconocido al cargar comentarios.";
-      setReviewsError(errorMessage);
       toast({
         variant: "destructive",
         title: "Error Inesperado",
@@ -741,16 +753,39 @@ export default function HomePage() {
     setIsLoadingReviews(false);
   }, [toast]);
 
+  const fetchStatisticsData = useCallback(async () => {
+    setIsLoadingStatistics(true);
+    try {
+      const result = await getStatistics();
+      if (result.success && result.data) {
+        setStatistics(result.data);
+      } else {
+        toast({
+          variant: "destructive",
+          title: "Error al Cargar Estadísticas",
+          description: result.error || "No se pudieron cargar las estadísticas. Intenta de nuevo más tarde.",
+        });
+      }
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "Error desconocido al cargar estadísticas.";
+      toast({
+        variant: "destructive",
+        title: "Error Inesperado",
+        description: errorMessage,
+      });
+    }
+    setIsLoadingStatistics(false);
+  }, [toast]);
+
   useEffect(() => {
-    const year = new Date().getFullYear().toString();
-    setCurrentYear(year);
     fetchReviewsData();
-  }, [fetchReviewsData]);
+    fetchStatisticsData();
+  }, [fetchReviewsData, fetchStatisticsData]);
 
   return (
     <main className="flex min-h-screen flex-col items-center bg-background text-foreground w-full">
       <HeroSection user={user} loading={isLoadingReviews} />
-      <StatisticsSection />
+      <StatisticsSection statistics={statistics} isLoading={isLoadingStatistics} />
       <HowItWorks />
       <Features />
       <Testimonials reviews={reviews} isLoading={isLoadingReviews} />

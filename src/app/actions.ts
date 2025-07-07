@@ -1,6 +1,8 @@
 
 'use server';
 
+import { auth } from '@/lib/firebase'; // Import Firebase auth
+import { getAuth } from 'firebase/auth'; // Import getAuth from firebase/auth
 import { db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp, query, orderBy, limit, getDocs, doc, deleteDoc } from 'firebase/firestore';
 import type { QuestionnaireData, UserDetailsData, FeedbackData as ClientFeedbackData } from '@/lib/schemas';
@@ -212,5 +214,85 @@ export async function handleConversationAnalysis(conversationText: string): Prom
       console.error("SERVER_ACTION_ERROR_DETAILS: Genkit error details:", (error as any).details);
     }
     return { success: false, error: errorMessage };
+  }
+}
+
+// Helper function to get the Firebase ID token
+async function getAuthToken(): Promise<string | null> {
+  const currentUser = auth.currentUser;
+  if (currentUser) {
+    try {
+      const token = await currentUser.getIdToken();
+      return token;
+    } catch (error) {
+      console.error("Error getting Firebase ID token:", error);
+      return null;
+    }
+  }
+  return null;
+}
+
+// New action to get all users from the backend
+export async function getAllUsers(): Promise<ActionResult<any[]>> {
+  console.log("SERVER_ACTION_LOG: Executing getAllUsers...");
+  try {
+    const token = await getAuthToken();
+    if (!token) {
+      return { success: false, error: 'Authentication token is missing. Please log in.' };
+    }
+
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/admin/users`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      console.error("SERVER_ACTION_ERROR: Backend error fetching users:", data);
+      return { success: false, error: data.message || 'Error al obtener usuarios del backend.' };
+    }
+
+    console.log("SERVER_ACTION_LOG: Users fetched successfully:", data);
+    return { success: true, data: data };
+  } catch (error: any) {
+    console.error("SERVER_ACTION_ERROR: Error in getAllUsers action:", error);
+    return { success: false, error: error.message || "Error de red al obtener usuarios." };
+  }
+}
+
+// New action to assign a role to a user via the backend
+export async function assignUserRole(email: string, role: 'user' | 'psychologist' | 'admin'): Promise<ActionResult> {
+  console.log(`SERVER_ACTION_LOG: Executing assignUserRole for ${email} with role ${role}...`);
+  try {
+    const token = await getAuthToken();
+    if (!token) {
+      return { success: false, error: 'Authentication token is missing. Please log in.' };
+    }
+
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/admin/assign-role`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify({ email, role }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      console.error("SERVER_ACTION_ERROR: Backend error assigning role:", data);
+      return { success: false, error: data.message || 'Error al asignar el rol al usuario.' };
+    }
+
+    console.log("SERVER_ACTION_LOG: Role assigned successfully:", data);
+    return { success: true, message: data.message };
+  } catch (error: any) {
+    console.error("SERVER_ACTION_ERROR: Error in assignUserRole action:", error);
+    return { success: false, error: error.message || "Error de red al asignar el rol." };
   }
 }

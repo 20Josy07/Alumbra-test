@@ -8,59 +8,59 @@
 
 @layer base {
   :root {
-    --background: 273 49% 18%; /* New: #2e1943 */
-    --foreground: 270 20% 90%; /* Copied from .dark */
+    --background: 270 20% 98%; /* Very light gray/off-white */
+    --foreground: 273 49% 18%; /* Dark purple from dark theme */
 
-    --card: 273 49% 22%; /* New: Derived from new background (Lightness +4%) */
-    --card-foreground: 270 20% 90%; /* Copied from .dark */
+    --card: 0 0% 100%; /* White */
+    --card-foreground: 273 49% 18%; /* Dark purple */
 
-    --popover: 273 49% 22%; /* New: Derived from new background (Lightness +4%) */
-    --popover-foreground: 270 20% 90%; /* Copied from .dark */
+    --popover: 0 0% 100%; /* White */
+    --popover-foreground: 273 49% 18%; /* Dark purple */
 
-    --primary: 285 60% 70%; /* Copied from .dark */
-    --primary-foreground: 274 32% 15%; /* Copied from .dark */
+    --primary: 285 60% 40%; /* Darker purple for primary actions */
+    --primary-foreground: 270 20% 98%; /* Off-white */
 
-    --secondary: 274 25% 30%; /* Copied from .dark */
-    --secondary-foreground: 270 15% 80%; /* Copied from .dark */
+    --secondary: 274 25% 85%; /* Lighter purple/gray for secondary elements */
+    --secondary-foreground: 273 49% 18%; /* Dark purple */
 
-    --muted: 274 20% 45%; /* Copied from .dark */
-    --muted-foreground: 270 10% 65%; /* Copied from .dark */
+    --muted: 274 20% 90%; /* Even lighter muted background */
+    --muted-foreground: 270 10% 40%; /* Darker muted text */
 
-    --accent: 285 60% 70%; /* Copied from .dark */
-    --accent-foreground: 274 32% 15%; /* Copied from .dark */
+    --accent: 285 60% 40%; /* Same as primary for accent */
+    --accent-foreground: 270 20% 98%; /* Off-white */
 
-    --destructive: 0 75% 60%; /* Copied from .dark */
-    --destructive-foreground: 0 0% 100%; /* Copied from .dark */
+    --destructive: 0 75% 60%; /* Red */
+    --destructive-foreground: 0 0% 100%; /* White */
 
-    --border: 274 25% 28%; /* Copied from .dark */
-    --input: 274 25% 28%;  /* Copied from .dark */
-    --ring: 285 60% 75%; /* Copied from .dark */
+    --border: 274 25% 75%; /* Lighter border */
+    --input: 274 25% 75%;  /* Lighter input border */
+    --ring: 285 60% 45%; /* Slightly lighter ring */
 
     --radius: 0.5rem;
 
-    --chart-1: 285 60% 70%; /* Copied from .dark */
-    --chart-2: 270 50% 60%; /* Copied from .dark */
-    --chart-3: 295 55% 65%; /* Copied from .dark */
-    --chart-4: 260 45% 55%; /* Copied from .dark */
-    --chart-5: 300 50% 60%; /* Copied from .dark */
+    --chart-1: 285 60% 40%;
+    --chart-2: 270 50% 50%;
+    --chart-3: 295 55% 55%;
+    --chart-4: 260 45% 45%;
+    --chart-5: 300 50% 50%;
 
-    /* Sidebar specific colors */
-    --sidebar-background: 273 49% 16%; /* New: Derived from new background (Lightness -2%) */
-    --sidebar-foreground: 270 20% 85%; /* Copied from .dark sidebar */
-    --sidebar-primary: 285 60% 70%; /* Copied from .dark sidebar */
-    --sidebar-primary-foreground: 274 32% 15%; /* Copied from .dark sidebar */
-    --sidebar-accent: 285 60% 75%; /* Copied from .dark sidebar */
-    --sidebar-accent-foreground: 274 32% 15%; /* Copied from .dark sidebar */
-    --sidebar-border: 274 25% 25%; /* Copied from .dark sidebar */
-    --sidebar-ring: 285 60% 75%; /* Copied from .dark sidebar */
+    /* Sidebar specific colors for light theme */
+    --sidebar-background: 270 20% 95%; /* Slightly darker off-white for sidebar */
+    --sidebar-foreground: 273 49% 18%; /* Dark purple */
+    --sidebar-primary: 285 60% 40%; /* Darker purple */
+    --sidebar-primary-foreground: 270 20% 98%; /* Off-white */
+    --sidebar-accent: 274 25% 80%; /* Lighter purple/gray */
+    --sidebar-accent-foreground: 273 49% 18%; /* Dark purple */
+    --sidebar-border: 274 25% 70%; /* Lighter border */
+    --sidebar-ring: 285 60% 45%; /* Slightly lighter ring */
   }
 
   .dark {
-    --background: 273 49% 18%; 
+    --background: 273 49% 18%;
     --foreground: 270 20% 90%;
-    --card: 273 49% 22%; 
+    --card: 273 49% 22%;
     --card-foreground: 270 20% 90%;
-    --popover: 273 49% 22%; 
+    --popover: 273 49% 22%;
     --popover-foreground: 270 20% 90%;
     --primary: 285 60% 70%;
     --primary-foreground: 274 32% 15%;

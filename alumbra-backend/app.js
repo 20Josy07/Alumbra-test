@@ -17,6 +17,7 @@ const analysisRoutes = require('./routes/analysis.routes');
 const alertRoutes = require('./routes/alert.routes');
 const webhookRoutes = require('./routes/webhook.routes');
 const patientRoutes = require('./routes/patient.routes'); // Import patient routes
+const adminRoutes = require('./routes/admin.routes'); // Import admin routes
 
 const app = express();
 
@@ -50,6 +51,7 @@ app.use('/api/analysis', analysisRoutes);
 app.use('/api/alerts', alertRoutes);
 app.use('/api/webhooks', webhookRoutes);
 app.use('/api/patients', patientRoutes); // Use patient routes
+app.use('/api/admin', adminRoutes); // Use admin routes
 
 // --- Error Handling ---
 
