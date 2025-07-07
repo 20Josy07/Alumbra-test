@@ -3,7 +3,6 @@
 import type { ReactNode } from 'react';
 import React, { useState, useEffect } from 'react';
 import {
-  SidebarProvider,
   Sidebar,
   SidebarHeader,
   SidebarContent,
@@ -103,7 +102,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
   }, [pathname]);
 
   return (
-    <SidebarProvider defaultOpen>
+    <React.Fragment>
       <Sidebar collapsible="icon" className="border-r border-sidebar-border bg-sidebar text-sidebar-foreground">
         <SidebarHeader className="p-4 border-b border-sidebar-border">
           <div className="flex items-center gap-2 md:gap-3">
@@ -161,68 +160,64 @@ export default function AppLayout({ children }: AppLayoutProps) {
                         <UserCircle className="h-full w-full text-sidebar-foreground/70" />
                       )}
                       <AvatarFallback>{getInitials(user.displayName)}</AvatarFallback>
-                    </Avatar>
-                    {sidebarState === 'expanded' && (
-                      <span className="truncate text-sm">{user.displayName || user.email}</span>
-                    )}
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56 bg-popover text-popover-foreground">
-                  <DropdownMenuLabel className="truncate">{user.displayName || user.email}</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem disabled>
-                    <Settings className="mr-2 h-4 w-4" />
-                    <span>Configuración</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={handleSignOut} className="cursor-pointer text-destructive focus:bg-destructive/10 focus:text-destructive">
-                    <LogOut className="mr-2 h-4 w-4" />
-                    <span>Cerrar Sesión</span>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
-          ) : (
-            <Link href="/login" passHref>
-              <Button variant="ghost" className="w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
-                <LogIn className="mr-2 h-4 w-4" />
-                {sidebarState === 'expanded' && <span>Iniciar Sesión</span>}
-              </Button>
-            </Link>
-          )}
-          <SidebarSeparator className="my-1 group-data-[collapsible=icon]/sidebar-wrapper:hidden" />
-          <div className="space-y-1 group-data-[collapsible=icon]/sidebar-wrapper:hidden">
-            {policyNavItems.map(item => (
-              <Link key={item.href} href={item.href} passHref>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="w-full justify-start text-xs text-sidebar-foreground/70 hover:text-sidebar-foreground/90 hover:bg-sidebar-accent/50"
-                >
-                  <item.icon className="mr-2 h-3.5 w-3.5" />
-                  {item.label}
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-56 bg-popover text-popover-foreground">
+                    <DropdownMenuLabel className="truncate">{user.displayName || user.email}</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem disabled>
+                      <Settings className="mr-2 h-4 w-4" />
+                      <span>Configuración</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem onClick={handleSignOut} className="cursor-pointer text-destructive focus:bg-destructive/10 focus:text-destructive">
+                      <LogOut className="mr-2 h-4 w-4" />
+                      <span>Cerrar Sesión</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+            ) : (
+              <Link href="/login" passHref>
+                <Button variant="ghost" className="w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
+                  <LogIn className="mr-2 h-4 w-4" />
+                  {sidebarState === 'expanded' && <span>Iniciar Sesión</span>}
                 </Button>
               </Link>
-            ))}
-          </div>
-          <p className="text-xs text-sidebar-foreground/60 text-center group-data-[collapsible=icon]/sidebar-wrapper:hidden mt-2">
-            © {year} Alumbra AI
-          </p>
-        </SidebarFooter>
-      </Sidebar>
-      <SidebarInset>
-        <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background px-4 sm:px-6">
-            <SidebarTrigger className="md:hidden" />
-            <div className="flex-1">
-              <h1 className="font-semibold text-lg text-foreground">
-                {pageTitle}
-              </h1>
+            )}
+            <SidebarSeparator className="my-1 group-data-[collapsible=icon]/sidebar-wrapper:hidden" />
+            <div className="space-y-1 group-data-[collapsible=icon]/sidebar-wrapper:hidden">
+              {policyNavItems.map(item => (
+                <Link key={item.href} href={item.href} passHref>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="w-full justify-start text-xs text-sidebar-foreground/70 hover:text-sidebar-foreground/90 hover:bg-sidebar-accent/50"
+                  >
+                    <item.icon className="mr-2 h-3.5 w-3.5" />
+                    {item.label}
+                  </Button>
+                </Link>
+              ))}
             </div>
-        </header>
-        <main className="flex-1 overflow-auto p-4 md:p-6 bg-background">
-          {children}
-        </main>
-      </SidebarInset>
-    </SidebarProvider>
+            <p className="text-xs text-sidebar-foreground/60 text-center group-data-[collapsible=icon]/sidebar-wrapper:hidden mt-2">
+              © {year} Alumbra AI
+            </p>
+          </SidebarFooter>
+        </Sidebar>
+        <SidebarInset>
+          <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background px-4 sm:px-6">
+              <SidebarTrigger className="md:hidden" />
+              <div className="flex-1">
+                <h1 className="font-semibold text-lg text-foreground">
+                  {pageTitle}
+                </h1>
+              </div>
+          </header>
+          <main className="flex-1 overflow-auto p-4 md:p-6 bg-background">
+            {children}
+          </main>
+        </SidebarInset>
+    </React.Fragment>
   );
 }
