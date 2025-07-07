@@ -195,7 +195,22 @@ const Sidebar = React.forwardRef<
     }
 
     if (isMobile === undefined) {
-      return null; // Render nothing until isMobile is determined
+      return (
+        <div
+          className={cn(
+            "flex h-full w-[--sidebar-width] flex-col bg-sidebar text-sidebar-foreground",
+            className
+          )}
+          ref={ref}
+          {...props}
+        >
+          <SidebarMenuSkeleton showIcon className="my-2" />
+          <SidebarMenuSkeleton showIcon className="my-2" />
+          <SidebarMenuSkeleton showIcon className="my-2" />
+          <SidebarMenuSkeleton showIcon className="my-2" />
+          <SidebarMenuSkeleton showIcon className="my-2" />
+        </div>
+      );
     }
 
     if (isMobile) {
